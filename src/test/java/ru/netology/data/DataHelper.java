@@ -12,17 +12,14 @@ public class DataHelper {
     private DataHelper() {}
 
 //VALID DATA
-
     public static String getACardNumber() { return "4444 4444 4444 4441"; }
-
-    public static String getBCardNumber() {
-        return "4444 4444 4444 4442";
-    }
-
     public static String getACardStatus() {
         return "APPROVED";
     }
 
+    public static String getBCardNumber() {
+        return "4444 4444 4444 4442";
+    }
     public static String getBCardStatus() {
         return "DECLINED";
     }
@@ -30,15 +27,12 @@ public class DataHelper {
     public static String getValidMonth() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
     }
-
     public static String getValidYear() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
     }
-
     public static String getValidOwner() {
         return "Ivanov Ivan";
     }
-
     public static String getValidCode() {
         return "999";
     }
