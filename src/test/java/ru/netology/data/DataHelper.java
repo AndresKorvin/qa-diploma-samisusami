@@ -24,6 +24,14 @@ public class DataHelper {
         return "DECLINED";
     }
 
+    public static String getApprovedPurchaseStatus() {
+        return "APPROVED";
+    };
+    public static String getDeclinedPurchaseStatus() {
+        return "DECLINED";
+    };
+    public static String getNullPurchaseStatus() { return "null"; };
+
     public static String getValidMonth() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
     }
@@ -40,7 +48,7 @@ public class DataHelper {
 //INVALID DATA CARD NUMBER
 //        - неверный номер карты
 public static String getInvalidCardNumber() {
-    return fakerEn.number().digits(16);
+    return "1234 5678 9876 5432";
 }
 //        - номер карты с 1 цирой
 public static String getCardNumberWith1Digit() {
@@ -78,7 +86,7 @@ public static String getMonthWithCyrillicText() { return LocalDate.now().format(
 //        - неверный номер года действия карты
 public static String getPastYear() { return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy")); }
 //        - год больше текущего
-public static String getFutureYear() { return LocalDate.now().plusYears(5).format(DateTimeFormatter.ofPattern("yy")); }
+public static String getFutureYear() { return LocalDate.now().plusYears(6).format(DateTimeFormatter.ofPattern("yy")); }
 //        - латиница вместо цифр в поле год
 public static String getYearWithLatinText() {
     return "ye";
@@ -91,10 +99,10 @@ public static String getYearWithCyrillicText() {
 //
 //        - неверное заполненное латиницей поле Владелец
 public static String getnIvalidFullName() {
-    return fakerEn.name().fullName();
+    return "Petr Petrov";
 }
 //        - кириллица вместо латиницы в поле Владелец
-public static String getCyrillicDataOwner() {
+public static String getOwnerWithCyrillic() {
     return "Иван Иванов";
 }
 //        - цифры вместо букв в поле Владелец
@@ -110,6 +118,10 @@ public static String getFullName() {
     return "Ivan Ivanovich Ivanov";
 }
 //        - спецсимволы в поле владелец
+public static String getNameInTwoLanguages() {
+    return "Ivan Иванов";
+}
+
 public static String getOwnerWithSpecialChars() {
     return "!№%?*";
 }
@@ -117,7 +129,7 @@ public static String getOwnerWithSpecialChars() {
 //
 //        - 2 цифры в поле CVC/CVV код
 public static String getInvalidFormatCodeWhith2Digits() {
-    return fakerEn.number().digits(2);
+    return "98";
 }
 //        - латиница вместо цифр в поле CVC/CVV код
 public static String getCodeWithLatinText() {

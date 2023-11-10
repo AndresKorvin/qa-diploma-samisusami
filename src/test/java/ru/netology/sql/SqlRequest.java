@@ -39,7 +39,7 @@ public class SqlRequest {
     }
 
     @SneakyThrows
-    public static String getCreditPaymentStatus() {
+    public static String getCreditPurchaseStatus() {
         QueryRunner runner = new QueryRunner();
         String SqlStatus = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
         try (var connection = getConn()) {

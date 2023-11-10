@@ -6,27 +6,28 @@ import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class PaymentFormPage {
 
-    private SelenideElement cardNumberField = $(byText("Номер карты"));
-    private SelenideElement monthCardField = $(byText("Месяц"));
-    private SelenideElement yearCardField = $(byText("Год"));
-    private SelenideElement cardOwnerField = $(byText("Владелец"));
-    private SelenideElement cvcCodeField = $(byText("CVC/CVV"));
-    private SelenideElement continueButton = $(byText("Продолжить"));
+    private final SelenideElement cardNumberField = $("[placeholder='0000 0000 0000 0000']");
+    private final SelenideElement monthCardField = $("[placeholder='08']");
+    private final SelenideElement yearCardField = $("[placeholder='22']");
+    private final SelenideElement cardOwnerField = $$("[class='input__control']").get(3);
+    private final SelenideElement cvcCodeField = $("[placeholder='999']");
+    private final SelenideElement continueButton = $(byText("Продолжить"));
 
-    private SelenideElement wrongFormatMessage = $(byText("Неверный формат"));
-    private SelenideElement requiredFieldForOwnerMessage = $(byText("Поле обязательно для заполнения"));
-    private SelenideElement cardHasExpiredMessage = $(byText("Истёк срок действия карты"));
-    private SelenideElement fieldContainsInvalidCharactersMessage = $(byText("Поле содержит недопустимые символы"));
+    public SelenideElement wrongFormatMessage = $(byText("Неверный формат"));
+    public SelenideElement requiredFieldForOwnerMessage = $(byText("Поле обязательно для заполнения"));
+    public SelenideElement cardHasExpiredMessage = $(byText("Истёк срок действия карты"));
+    public SelenideElement fieldContainsInvalidCharactersMessage = $(byText("Поле содержит недопустимые символы"));
 
-    private SelenideElement theCardExpirationDateIsIncorrectMessage = $(byText("Неверно указан срок действия карты"));
-    private SelenideElement containsInvalidCharactersMessage = $(byText("Поле содержит недопустимые символы"));
+    public SelenideElement theCardExpirationDateIsIncorrectMessage = $(byText("Неверно указан срок действия карты"));
+    public SelenideElement containsInvalidCharactersMessage = $(byText("Поле содержит недопустимые символы"));
 
-    private SelenideElement failedNotificationMessage = $(byText("Ошибка! Банк отказал в проведении операции."));
+    public SelenideElement failedNotificationMessage = $(byText("Ошибка! Банк отказал в проведении операции."));
     public SelenideElement successedNotificationMessage = $(byText("Операция одобрена Банком."));
 
     public void fillForm(String cardNumber, String month, String year, String cardOwner, String code) {
