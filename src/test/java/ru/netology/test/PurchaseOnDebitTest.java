@@ -712,5 +712,17 @@ void shouldDeclinePurchaseWithWrongMonthB() {
                 DataHelper.getEmpty());
         paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
     }
-
+    // добавить в кредит
+    @Test
+//        - спецсимволы
+    void shouldDeclineWithSpecialCharsInCvcFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getCvcWithSpecialChars());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
 }

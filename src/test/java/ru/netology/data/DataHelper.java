@@ -1,36 +1,25 @@
 package ru.netology.data;
 
-import com.github.javafaker.Faker;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DataHelper {
 
-    private static Faker fakerEn;
-
     private DataHelper() {}
 
 //VALID DATA
     public static String getACardNumber() { return "4444 4444 4444 4441"; }
-    public static String getACardStatus() {
-        return "APPROVED";
-    }
 
     public static String getBCardNumber() {
         return "4444 4444 4444 4442";
     }
-    public static String getBCardStatus() {
-        return "DECLINED";
-    }
 
     public static String getApprovedPurchaseStatus() {
         return "APPROVED";
-    };
+    }
     public static String getDeclinedPurchaseStatus() {
         return "DECLINED";
-    };
-    public static String getNullPurchaseStatus() { return "null"; };
+    }
 
     public static String getValidMonth() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
@@ -107,7 +96,7 @@ public static String getOwnerWithCyrillic() {
 }
 //        - цифры вместо букв в поле Владелец
 public static String getOwnerWithDigits() {
-    return fakerEn.number().digits(10);
+    return "1122 334455";
 }
 //        - только имя в поле владелец
 public static String getOnlyNameOwner() {

@@ -2,7 +2,6 @@ package ru.netology.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 
@@ -22,11 +21,7 @@ public class PaymentFormPage {
     public SelenideElement wrongFormatMessage = $(byText("Неверный формат"));
     public SelenideElement requiredFieldForOwnerMessage = $(byText("Поле обязательно для заполнения"));
     public SelenideElement cardHasExpiredMessage = $(byText("Истёк срок действия карты"));
-    public SelenideElement fieldContainsInvalidCharactersMessage = $(byText("Поле содержит недопустимые символы"));
-
     public SelenideElement theCardExpirationDateIsIncorrectMessage = $(byText("Неверно указан срок действия карты"));
-    public SelenideElement containsInvalidCharactersMessage = $(byText("Поле содержит недопустимые символы"));
-
     public SelenideElement failedNotificationMessage = $(byText("Ошибка! Банк отказал в проведении операции."));
     public SelenideElement successedNotificationMessage = $(byText("Операция одобрена Банком."));
 
@@ -40,16 +35,7 @@ public class PaymentFormPage {
     }
 
     public PaymentFormPage clearForm() {
-//        clearFields();
         return new PaymentFormPage();
-    }
-
-    public void clearFields() {
-        cardNumberField.doubleClick().sendKeys(Keys.DELETE);
-        monthCardField.doubleClick().sendKeys(Keys.DELETE);
-        yearCardField.doubleClick().sendKeys(Keys.DELETE);
-        cardOwnerField.doubleClick().sendKeys(Keys.DELETE);
-        cvcCodeField.doubleClick().sendKeys(Keys.DELETE);
     }
 
     public void waitForNotificationMesage(SelenideElement notificationMesage) {

@@ -8,14 +8,12 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
-   // class="heading heading_size_m heading_theme_alfa-on-white"
-   // class="button button_view_extra button_size_m button_theme_alfa-on-white"
-    private SelenideElement heading = $("[class='heading heading_size_l heading_theme_alfa-on-white']");
-    private SelenideElement purchaseOnDebit = $(byText("Купить"));
-    private SelenideElement purchaseOnCredit = $(byText("Купить в кредит"));
-    private SelenideElement paymentFormHeading = $("[class='heading heading_size_m heading_theme_alfa-on-white']");
-    private String buttonTextPayOnCredit = "Кредит по данным карты";
-    private String buttonTextPayOnDebit = "Оплата по карте";
+    public SelenideElement heading = $("[class='heading heading_size_l heading_theme_alfa-on-white']");
+    public SelenideElement purchaseOnDebit = $(byText("Купить"));
+    public SelenideElement purchaseOnCredit = $(byText("Купить в кредит"));
+    public SelenideElement paymentFormHeading = $("[class='heading heading_size_m heading_theme_alfa-on-white']");
+    public String buttonTextPayOnCredit = "Кредит по данным карты";
+    public String buttonTextPayOnDebit = "Оплата по карте";
 
 
     public MainPage() {
