@@ -12,6 +12,7 @@ group = 'ru.netology'
 version = '1.0-SNAPSHOT'
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -39,7 +40,7 @@ test {
 }
 
 allure {
-    // autoconfigure = true
+    autoconfigure = true
     version = '2.20.1'
 
     useJUnit5 {
