@@ -744,4 +744,16 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getEmpty());
         paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
     }
+    @Test
+//        - спецсимволы
+    void shouldDeclineWithSpecialCharsInCvcFieldB() {
+        paymentFormPage = mainPage.payOnCredit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getCvcWithSpecialChars());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
 }
