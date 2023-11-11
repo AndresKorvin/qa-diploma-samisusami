@@ -26,38 +26,7 @@ public class PurchaseOnDebitTest {
         SqlRequest.clearDataBase();
     }
 
-    // Позитивные тесты
-    @Test
-    void shouldAllowPurchasesWithCardA() {
-        paymentFormPage = mainPage.payOnDebit().clearForm();
-        paymentFormPage.fillForm(
-                DataHelper.getACardNumber(),
-                DataHelper.getValidMonth(),
-                DataHelper.getValidYear(),
-                DataHelper.getValidOwner(),
-                DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.successedNotificationMessage);
-
-        val expected = getApprovedPurchaseStatus();
-        val actual = SqlRequest.getDebitPurchaseStatus();
-        assertEquals(expected, actual);
-    }
-    @Test
-    void shouldDeclinePurchaseWithCardB() {
-        paymentFormPage = mainPage.payOnCredit().clearForm();
-        paymentFormPage.fillForm(
-                DataHelper.getBCardNumber(),
-                DataHelper.getValidMonth(),
-                DataHelper.getValidYear(),
-                DataHelper.getValidOwner(),
-                DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
-
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getDebitPurchaseStatus();
-        assertEquals(expected, actual);
-    }
-
+    // ТЕСТЫ С ПОЛЕМ НОМЕРКАРТЫ
 @Test
 //        - неверный номер карты
 void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
@@ -134,9 +103,25 @@ void shouldDeclinePurchaseWithCardAWithEmptyCardNumber() {
             DataHelper.getValidCode());
     paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
 }
+    //     ТЕСТЫ С КАРТОЙ А
+    @Test
+    void shouldAllowPurchasesWithCardA() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getACardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.successedNotificationMessage);
+
+        val expected = getApprovedPurchaseStatus();
+        val actual = SqlRequest.getDebitPurchaseStatus();
+        assertEquals(expected, actual);
+    }
 @Test
 //        - неверный номер месяца действия карты
-void shouldDeclinePurchaseWithWrongMonth() {
+void shouldDeclinePurchaseWithWrongMonthA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -148,7 +133,7 @@ void shouldDeclinePurchaseWithWrongMonth() {
 }
 @Test
 //        - месяц больше 12
-void shouldDeclinePurchaseWithMonthNum13() {
+void shouldDeclinePurchaseWithMonthNum13A() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -160,7 +145,7 @@ void shouldDeclinePurchaseWithMonthNum13() {
 }
 @Test
 //            - месяц 0
-void shouldDeclinePurchaseWithMonthNum0() {
+void shouldDeclinePurchaseWithMonthNum0A() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -172,7 +157,7 @@ void shouldDeclinePurchaseWithMonthNum0() {
 }
 @Test
 //            - латиница вместо цифр в поле месяц
-void shouldDeclinePurchaseWithLatinLettersInTheMonthField() {
+void shouldDeclinePurchaseWithLatinLettersInTheMonthFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -184,7 +169,7 @@ void shouldDeclinePurchaseWithLatinLettersInTheMonthField() {
 }
 @Test
 //        - кириллица вместо цифр в поле месяц
-void shouldDeclinePurchaseWithCyrillicLettersInTheMonthField() {
+void shouldDeclinePurchaseWithCyrillicLettersInTheMonthFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -196,7 +181,7 @@ void shouldDeclinePurchaseWithCyrillicLettersInTheMonthField() {
 }
 @Test
 //        - пустые данные
-void shouldDeclinePurchaseWithEmptyMonth() {
+void shouldDeclinePurchaseWithEmptyMonthA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -208,7 +193,7 @@ void shouldDeclinePurchaseWithEmptyMonth() {
 }
 @Test
 //        - неверный номер года действия карты
-void shouldDeclinePurchaseWrongYear() {
+void shouldDeclinePurchaseWrongYearA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -220,7 +205,7 @@ void shouldDeclinePurchaseWrongYear() {
 }
 @Test
 //        - год больше текущего
-void shouldDeclinePurchaseWithACardValidityPeriodOfMoreThan5Years() {
+void shouldDeclinePurchaseWithACardValidityPeriodOfMoreThan5YearsA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -232,7 +217,7 @@ void shouldDeclinePurchaseWithACardValidityPeriodOfMoreThan5Years() {
 }
 @Test
 //        - латиница вместо цифр в поле год
-void shouldDeclinePurchaseWithLatinLettersInFieldYear() {
+void shouldDeclinePurchaseWithLatinLettersInFieldYearA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -244,7 +229,7 @@ void shouldDeclinePurchaseWithLatinLettersInFieldYear() {
 }
 @Test
 //        - кириллица вместо цифр в поле год
-void shouldDeclinePurchaseWithCyrillicLettersInFieldYear() {
+void shouldDeclinePurchaseWithCyrillicLettersInFieldYearA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -256,7 +241,7 @@ void shouldDeclinePurchaseWithCyrillicLettersInFieldYear() {
 }
 @Test
 //        - пустые данные
-void shouldDeclinePurchaseWithEmptyInFieldYear() {
+void shouldDeclinePurchaseWithEmptyInFieldYearA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -268,7 +253,7 @@ void shouldDeclinePurchaseWithEmptyInFieldYear() {
 }
 @Test
 //        - неверное заполненное латиницей поле Владелец
-void shouldDeclinePurchaseWithWrongOwner() {
+void shouldDeclinePurchaseWithWrongOwnerA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -284,7 +269,7 @@ void shouldDeclinePurchaseWithWrongOwner() {
 }
 @Test
 //        - кириллица вместо латиницы в поле Владелец
-void shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharacters() {
+void shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharactersA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -296,7 +281,7 @@ void shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharacters() {
 }
 @Test
 //        - цифры вместо букв в поле Владелец
-void shouldDeclinePurchaseOwnerFieldIsFilledWithDigits() {
+void shouldDeclinePurchaseOwnerFieldIsFilledWithDigitsA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -308,7 +293,7 @@ void shouldDeclinePurchaseOwnerFieldIsFilledWithDigits() {
 }
 @Test
 //        - только имя в поле владелец
-void shouldDeclinePurchaseOwnerSNameOnly() {
+void shouldDeclinePurchaseOwnerSNameOnlyA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -324,7 +309,7 @@ void shouldDeclinePurchaseOwnerSNameOnly() {
 }
 @Test
 //        - фамилия, имя + излишнее отчество
-void shouldDeclineWithLastNameFirstNamePlusExtraMiddleName() {
+void shouldDeclineWithLastNameFirstNamePlusExtraMiddleNameA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -340,7 +325,7 @@ void shouldDeclineWithLastNameFirstNamePlusExtraMiddleName() {
 }
 @Test
 //        - имя фамилия на двух языках
-void shouldDeclineWithLastNameAndFirstNameInTwoLanguages() {
+void shouldDeclineWithLastNameAndFirstNameInTwoLanguagesA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -352,7 +337,7 @@ void shouldDeclineWithLastNameAndFirstNameInTwoLanguages() {
 }
 @Test
 //        - спецсимволы в поле владелец
-void shouldDeclineWithSpecialCharactersInTheOwnerField() {
+void shouldDeclineWithSpecialCharactersInTheOwnerFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -364,7 +349,7 @@ void shouldDeclineWithSpecialCharactersInTheOwnerField() {
 }
 @Test
 //        - пустые данные
-void shouldDeclineWithEmptyInTheOwnerField() {
+void shouldDeclineWithEmptyInTheOwnerFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -376,7 +361,7 @@ void shouldDeclineWithEmptyInTheOwnerField() {
 }
 @Test
 //        - 2 цифры в поле CVC/CVV код
-void shouldDeclineWith2DigitsInCvc() {
+void shouldDeclineWith2DigitsInCvcA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -388,7 +373,7 @@ void shouldDeclineWith2DigitsInCvc() {
 }
 @Test
 //        - латиница вместо цифр в поле CVC/CVV код
-void shouldDeclineWithLatinAlphabetInCvcField() {
+void shouldDeclineWithLatinAlphabetInCvcFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -400,7 +385,7 @@ void shouldDeclineWithLatinAlphabetInCvcField() {
 }
 @Test
 //        - кириллица вместо цифр в поле CVC/CVV код
-void shouldDeclineWithCyrillicAlphabetInCvcField() {
+void shouldDeclineWithCyrillicAlphabetInCvcFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -412,7 +397,7 @@ void shouldDeclineWithCyrillicAlphabetInCvcField() {
 }
 @Test
 //        - пустые данные
-void shouldDeclineWithEmptyInCvcField() {
+void shouldDeclineWithEmptyInCvcFieldA() {
     paymentFormPage = mainPage.payOnDebit().clearForm();
     paymentFormPage.fillForm(
             DataHelper.getACardNumber(),
@@ -422,5 +407,310 @@ void shouldDeclineWithEmptyInCvcField() {
             DataHelper.getEmpty());
     paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
 }
+
+//     ТЕСТЫ С КАРТОЙ В
+@Test
+void shouldDeclinePurchaseWithCardB() {
+    paymentFormPage = mainPage.payOnCredit().clearForm();
+    paymentFormPage.fillForm(
+            DataHelper.getBCardNumber(),
+            DataHelper.getValidMonth(),
+            DataHelper.getValidYear(),
+            DataHelper.getValidOwner(),
+            DataHelper.getValidCode());
+    paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+
+    val expected = getDeclinedPurchaseStatus();
+    val actual = SqlRequest.getDebitPurchaseStatus();
+    assertEquals(expected, actual);
+}
+@Test
+//        - неверный номер месяца действия карты
+void shouldDeclinePurchaseWithWrongMonthB() {
+    paymentFormPage = mainPage.payOnDebit().clearForm();
+    paymentFormPage.fillForm(
+            DataHelper.getBCardNumber(),
+            DataHelper.getInvalidMonth(),
+            DataHelper.getValidYear(),
+            DataHelper.getValidOwner(),
+            DataHelper.getValidCode());
+    paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+}
+    @Test
+//        - месяц больше 12
+    void shouldDeclinePurchaseWithMonthNum13B() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getMonthNum13(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+    }
+    @Test
+//            - месяц 0
+    void shouldDeclinePurchaseWithMonthNum0B() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getZeroMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+    }
+    @Test
+//            - латиница вместо цифр в поле месяц
+    void shouldDeclinePurchaseWithLatinLettersInTheMonthFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getMonthWithLatinText(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - кириллица вместо цифр в поле месяц
+    void shouldDeclinePurchaseWithCyrillicLettersInTheMonthFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getMonthWithCyrillicText(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - пустые данные
+    void shouldDeclinePurchaseWithEmptyMonthB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getEmpty(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - неверный номер года действия карты
+    void shouldDeclinePurchaseWrongYearB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getPastYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.cardHasExpiredMessage);
+    }
+    @Test
+//        - год больше текущего
+    void shouldDeclinePurchaseWithACardValidityPeriodOfMoreThan5YearsB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getFutureYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+    }
+    @Test
+//        - латиница вместо цифр в поле год
+    void shouldDeclinePurchaseWithLatinLettersInFieldYearB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getYearWithLatinText(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - кириллица вместо цифр в поле год
+    void shouldDeclinePurchaseWithCyrillicLettersInFieldYearB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getYearWithCyrillicText(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - пустые данные
+    void shouldDeclinePurchaseWithEmptyInFieldYearB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getEmpty(),
+                DataHelper.getValidOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - неверное заполненное латиницей поле Владелец
+    void shouldDeclinePurchaseWithWrongOwnerB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getnIvalidFullName(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+
+        val expected = getDeclinedPurchaseStatus();
+        val actual = SqlRequest.getDebitPurchaseStatus();
+        assertEquals(expected, actual);
+    }
+    @Test
+//        - кириллица вместо латиницы в поле Владелец
+    void shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharactersB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getOwnerWithCyrillic(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - цифры вместо букв в поле Владелец
+    void shouldDeclinePurchaseOwnerFieldIsFilledWithDigitsB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getOwnerWithDigits(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - только имя в поле владелец
+    void shouldDeclinePurchaseOwnerSNameOnlyB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getOnlyNameOwner(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+
+        val expected = getDeclinedPurchaseStatus();
+        val actual = SqlRequest.getDebitPurchaseStatus();
+        assertEquals(expected, actual);
+    }
+    @Test
+//        - фамилия, имя + излишнее отчество
+    void shouldDeclineWithLastNameFirstNamePlusExtraMiddleNameB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getFullName(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+
+        val expected = getDeclinedPurchaseStatus();
+        val actual = SqlRequest.getDebitPurchaseStatus();
+        assertEquals(expected, actual);
+    }
+    @Test
+//        - имя фамилия на двух языках
+    void shouldDeclineWithLastNameAndFirstNameInTwoLanguagesB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getNameInTwoLanguages(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - спецсимволы в поле владелец
+    void shouldDeclineWithSpecialCharactersInTheOwnerFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getOwnerWithSpecialChars(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - пустые данные
+    void shouldDeclineWithEmptyInTheOwnerFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getEmpty(),
+                DataHelper.getValidCode());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.requiredFieldForOwnerMessage);
+    }
+    @Test
+//        - 2 цифры в поле CVC/CVV код
+    void shouldDeclineWith2DigitsInCvcB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getInvalidFormatCodeWhith2Digits());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - латиница вместо цифр в поле CVC/CVV код
+    void shouldDeclineWithLatinAlphabetInCvcFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getCodeWithLatinText());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - кириллица вместо цифр в поле CVC/CVV код
+    void shouldDeclineWithCyrillicAlphabetInCvcFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getCodeWithCyrillicText());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
+    @Test
+//        - пустые данные
+    void shouldDeclineWithEmptyInCvcFieldB() {
+        paymentFormPage = mainPage.payOnDebit().clearForm();
+        paymentFormPage.fillForm(
+                DataHelper.getBCardNumber(),
+                DataHelper.getValidMonth(),
+                DataHelper.getValidYear(),
+                DataHelper.getValidOwner(),
+                DataHelper.getEmpty());
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+    }
 
 }
