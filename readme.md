@@ -35,9 +35,8 @@
     |--------------------------------------------------------------------------|----------|
     | ./gradlew clean test "-Ddatasource.url=jdbc:mysql://localhost:3306/app"  | ./gradlew clean test "-Ddatasource.url=jdbc:postgresql://localhost:5432/app" |
 
-    Сервис будет доступен в браузере по адресу: _http://localhost:8080/_
+    Сервис будет доступен в браузере по адресу: *http://localhost:8080/*  
 
-4) Генерируем отчёт по итогам тестирования с помощью **Allure** с помощью команды:  
-**./gradlew allureServe**
 
+5. Генерируем отчёт по итогам тестирования с помощью **Allure** с помощью команды: **./gradlew allureServe**  
     При завершении работы с отчетом остановить работу **allureServe** в терминале сочетанием клавиш *CTRL + C*
