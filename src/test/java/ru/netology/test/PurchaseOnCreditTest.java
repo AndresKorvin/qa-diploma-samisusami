@@ -35,38 +35,7 @@ public class PurchaseOnCreditTest {
     void cleanDataBase() {
         SqlRequest.clearDataBase();
     }
-    // Старые
-//    @Test
-//    void shouldAllowPurchasesWithCardA() {
-//        paymentFormPage = mainPage.payOnCredit().clearForm();
-//        paymentFormPage.fillForm(
-//                DataHelper.getACardNumber(),
-//                DataHelper.getValidMonth(),
-//                DataHelper.getValidYear(),
-//                DataHelper.getValidOwner(),
-//                DataHelper.getValidCode());
-//        paymentFormPage.waitForNotificationMesage(paymentFormPage.successedNotificationMessage);
-//
-//        val expected = getApprovedPurchaseStatus();
-//        val actual = SqlRequest.getCreditPurchaseStatus();
-//        assertEquals(expected, actual);
-//    }
-//    @Test
-//    void shouldDeclinePurchaseWithCardB() {
-//        paymentFormPage = mainPage.payOnCredit().clearForm();
-//        paymentFormPage.fillForm(
-//                DataHelper.getBCardNumber(),
-//                DataHelper.getValidMonth(),
-//                DataHelper.getValidYear(),
-//                DataHelper.getValidOwner(),
-//                DataHelper.getValidCode());
-//        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
-//
-//        val expected = getDeclinedPurchaseStatus();
-//        val actual = SqlRequest.getCreditPurchaseStatus();
-//        assertEquals(expected, actual);
-//    }
-//Новые
+
 // ТЕСТЫ С ПОЛЕМ НОМЕРКАРТЫ
 @Test
 //        - неверный номер карты

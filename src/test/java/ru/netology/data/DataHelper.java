@@ -25,7 +25,7 @@ public class DataHelper {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
     }
     public static String getValidYear() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
+        return LocalDate.now().plusYears(2).format(DateTimeFormatter.ofPattern("yy"));
     }
     public static String getValidOwner() {
         return "Ivanov Ivan";

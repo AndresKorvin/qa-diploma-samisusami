@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcaa3d1f-17ed-43c4-96b1-c906a8e0dd33" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Documentation/Report.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Documentation/summary.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Report.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/test/PurchaseOnCreditTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/test/PurchaseOnCreditTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
       <recent name="ru.netology.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PurchaseOnDebitTest.shouldDeclineWithSpecialCharsInCvcFieldB">
+  <component name="RunManager" selected="Gradle.PurchaseOnCreditTest.shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharactersA">
     <configuration name="PurchaseOnCreditTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -115,7 +114,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseOnDebitTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="PurchaseOnCreditTest.shouldAllowPurchasesWithCardA" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -128,7 +127,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.netology.test.PurchaseOnDebitTest&quot;" />
+            <option value="&quot;ru.netology.test.PurchaseOnCreditTest.shouldAllowPurchasesWithCardA&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -139,7 +138,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseOnDebitTest.shouldDeclineWith2DigitsInCvc" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="PurchaseOnCreditTest.shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharactersA" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -152,7 +151,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.netology.test.PurchaseOnDebitTest.shouldDeclineWith2DigitsInCvc&quot;" />
+            <option value="&quot;ru.netology.test.PurchaseOnCreditTest.shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharactersA&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -163,7 +162,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PurchaseOnDebitTest.shouldDeclineWithSpecialCharactersInTheOwnerField" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="PurchaseOnCreditTest.shouldDeclinePurchaseWithCardAWithInvalidCardNumber" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -176,7 +175,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.netology.test.PurchaseOnDebitTest.shouldDeclineWithSpecialCharactersInTheOwnerField&quot;" />
+            <option value="&quot;ru.netology.test.PurchaseOnCreditTest.shouldDeclinePurchaseWithCardAWithInvalidCardNumber&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -225,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PurchaseOnCreditTest.shouldDeclinePurchaseOwnerFieldIsFilledWithCyrillicCharactersA" />
+        <item itemvalue="Gradle.PurchaseOnCreditTest.shouldAllowPurchasesWithCardA" />
+        <item itemvalue="Gradle.PurchaseOnCreditTest.shouldDeclinePurchaseWithCardAWithInvalidCardNumber" />
         <item itemvalue="Gradle.PurchaseOnDebitTest.shouldDeclineWithSpecialCharsInCvcFieldB" />
         <item itemvalue="Gradle.PurchaseOnCreditTest" />
-        <item itemvalue="Gradle.PurchaseOnDebitTest" />
-        <item itemvalue="Gradle.PurchaseOnDebitTest.shouldDeclineWithSpecialCharactersInTheOwnerField" />
-        <item itemvalue="Gradle.PurchaseOnDebitTest.shouldDeclineWith2DigitsInCvc" />
       </list>
     </recent_temporary>
   </component>
@@ -244,7 +243,7 @@
       <workItem from="1699461551988" duration="5472000" />
       <workItem from="1699467304101" duration="6165000" />
       <workItem from="1699542972444" duration="49623000" />
-      <workItem from="1699732889156" duration="2080000" />
+      <workItem from="1699732889156" duration="5893000" />
     </task>
     <servers />
   </component>
