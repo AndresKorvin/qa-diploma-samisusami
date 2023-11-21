@@ -2,7 +2,7 @@ package ru.netology.test;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import lombok.val;
+import lombok.Data;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.page.MainPage;
@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.getApprovedPurchaseStatus;
 import static ru.netology.data.DataHelper.getDeclinedPurchaseStatus;
 
+@Data
 public class PurchaseOnCreditTest {
     private MainPage mainPage;
     private PaymentFormPage paymentFormPage;
@@ -47,10 +48,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
             DataHelper.getValidYear(),
             DataHelper.getValidOwner(),
             DataHelper.getValidCode());
-    paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+    paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-    val expected = getDeclinedPurchaseStatus();
-    val actual = SqlRequest.getCreditPurchaseStatus();
+    String expected = getDeclinedPurchaseStatus();
+    String actual = SqlRequest.getCreditPurchaseStatus();
     assertEquals(expected, actual);
 }
     @Test
@@ -63,7 +64,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - номер карты с 15 цифрами
@@ -75,7 +76,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - латиница вместо цифр в номере карты
@@ -87,7 +88,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в номере карты
@@ -99,7 +100,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -111,7 +112,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     //     ТЕСТЫ С КАРТОЙ А
     @Test
@@ -123,10 +124,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.successedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getSuccessedNotificationMessage());
 
-        val expected = getApprovedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getApprovedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -139,7 +140,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //        - месяц больше 12
@@ -151,7 +152,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //            - месяц 0
@@ -163,7 +164,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //            - латиница вместо цифр в поле месяц
@@ -175,7 +176,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в поле месяц
@@ -187,7 +188,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -199,7 +200,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - неверный номер года действия карты
@@ -211,7 +212,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getPastYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.cardHasExpiredMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getCardHasExpiredMessage());
     }
     @Test
 //        - год больше текущего
@@ -223,7 +224,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getFutureYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //        - латиница вместо цифр в поле год
@@ -235,7 +236,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getYearWithLatinText(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в поле год
@@ -247,7 +248,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getYearWithCyrillicText(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -259,7 +260,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getEmpty(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - неверное заполненное латиницей поле Владелец
@@ -271,10 +272,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getnIvalidFullName(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -287,7 +288,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOwnerWithCyrillic(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - цифры вместо букв в поле Владелец
@@ -299,7 +300,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOwnerWithDigits(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - только имя в поле владелец
@@ -311,10 +312,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOnlyNameOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -327,10 +328,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getFullName(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -343,7 +344,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getNameInTwoLanguages(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - спецсимволы в поле владелец
@@ -355,7 +356,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOwnerWithSpecialChars(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -367,7 +368,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getEmpty(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.requiredFieldForOwnerMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getRequiredFieldForOwnerMessage());
     }
     @Test
 //        - 2 цифры в поле CVC/CVV код
@@ -379,7 +380,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getInvalidFormatCodeWhith2Digits());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - латиница вместо цифр в поле CVC/CVV код
@@ -391,7 +392,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getCodeWithLatinText());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в поле CVC/CVV код
@@ -403,7 +404,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getCodeWithCyrillicText());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -415,7 +416,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getEmpty());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
 
     //     ТЕСТЫ С КАРТОЙ В
@@ -428,10 +429,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -444,7 +445,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //        - месяц больше 12
@@ -456,7 +457,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //            - месяц 0
@@ -468,7 +469,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //            - латиница вместо цифр в поле месяц
@@ -480,7 +481,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в поле месяц
@@ -492,7 +493,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -504,7 +505,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - неверный номер года действия карты
@@ -516,7 +517,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getPastYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.cardHasExpiredMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getCardHasExpiredMessage());
     }
     @Test
 //        - год больше текущего
@@ -528,7 +529,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getFutureYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.theCardExpirationDateIsIncorrectMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getTheCardExpirationDateIsIncorrectMessage());
     }
     @Test
 //        - латиница вместо цифр в поле год
@@ -540,7 +541,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getYearWithLatinText(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в поле год
@@ -552,7 +553,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getYearWithCyrillicText(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -564,7 +565,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getEmpty(),
                 DataHelper.getValidOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - неверное заполненное латиницей поле Владелец
@@ -576,10 +577,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getnIvalidFullName(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -592,7 +593,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOwnerWithCyrillic(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - цифры вместо букв в поле Владелец
@@ -604,7 +605,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOwnerWithDigits(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - только имя в поле владелец
@@ -616,10 +617,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOnlyNameOwner(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -632,10 +633,10 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getFullName(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.failedNotificationMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getFailedNotificationMessage());
 
-        val expected = getDeclinedPurchaseStatus();
-        val actual = SqlRequest.getCreditPurchaseStatus();
+        String expected = getDeclinedPurchaseStatus();
+        String actual = SqlRequest.getCreditPurchaseStatus();
         assertEquals(expected, actual);
     }
     @Test
@@ -648,7 +649,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getNameInTwoLanguages(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - спецсимволы в поле владелец
@@ -660,7 +661,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getOwnerWithSpecialChars(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -672,7 +673,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getEmpty(),
                 DataHelper.getValidCode());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.requiredFieldForOwnerMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getRequiredFieldForOwnerMessage());
     }
     @Test
 //        - 2 цифры в поле CVC/CVV код
@@ -684,7 +685,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getInvalidFormatCodeWhith2Digits());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - латиница вместо цифр в поле CVC/CVV код
@@ -696,7 +697,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getCodeWithLatinText());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - кириллица вместо цифр в поле CVC/CVV код
@@ -708,7 +709,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getCodeWithCyrillicText());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - пустые данные
@@ -720,7 +721,7 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getEmpty());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
     @Test
 //        - спецсимволы
@@ -732,6 +733,6 @@ void shouldDeclinePurchaseWithCardAWithInvalidCardNumber() {
                 DataHelper.getValidYear(),
                 DataHelper.getValidOwner(),
                 DataHelper.getCvcWithSpecialChars());
-        paymentFormPage.waitForNotificationMesage(paymentFormPage.wrongFormatMessage);
+        paymentFormPage.waitForNotificationMesage(paymentFormPage.getWrongFormatMessage());
     }
 }

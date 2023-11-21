@@ -67,9 +67,9 @@ public static String getMonthNum13() { return "13"; }
 //        - месяц 0
 public static String getZeroMonth() { return "00"; }
 //        - латиница вместо цифр в поле месяц
-public static String getMonthWithLatinText() { return LocalDate.now().format(DateTimeFormatter.ofPattern("MMM")); }
+public static String getMonthWithLatinText() { return "mo"; }
 //        - кириллица вместо цифр в поле месяц
-public static String getMonthWithCyrillicText() { return LocalDate.now().format(DateTimeFormatter.ofPattern("МММ")); }
+public static String getMonthWithCyrillicText() { return "ме"; }
 //        - пустые данные
 //
 //        - неверный номер года действия карты

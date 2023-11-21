@@ -4,7 +4,7 @@
 
 ### Начало работы
 
-- Клонировать проект с Github себе на ПК. Ссылка на проект https://github.com/AndresKorvin/qa-diploma
+- Клонировать проект с Github себе на ПК. Ссылка на проект https://github.com/AndresKorvin/qa-diploma-samisusami
 
 Для запуска тестов на  ПК должно быть установлено следующее ПО:
 - IntelliJ IDEA
