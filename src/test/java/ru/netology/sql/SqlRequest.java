@@ -4,18 +4,28 @@ import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Properties;
 
 public class SqlRequest {
-    private static final String DB_URL = System.getProperty("datasource.url");
+//    private static final String DB_URL = System.getProperty("datasource.url");
+//    private static final String name = System.getProperty("datasource.username");
+//    private static final String password = System.getProperty("datasource.password");
+
 
     private SqlRequest() {
     }
 
     @SneakyThrows
     public static Connection getConn() {
-        return DriverManager.getConnection(DB_URL, "app", "pass");
+        Properties prop = new Properties();
+        prop.load(new FileInputStream("application.properties"));
+        String url = prop.getProperty("spring.datasource.url");
+        String username = prop.getProperty("spring.datasource.username");
+        String password = prop.getProperty("spring.datasource.password");
+        return DriverManager.getConnection(url, username, password);
     }
 
     @SneakyThrows
